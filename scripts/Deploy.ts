@@ -1,4 +1,5 @@
-const { ethers } = require("hardhat");
+import "@nomiclabs/hardhat-ethers";
+import { ethers } from "hardhat";
 require("dotenv").config({ path: ".env" });
 require("@nomiclabs/hardhat-etherscan");
 
@@ -17,6 +18,7 @@ async function main() {
   await sleep(50000);
 
   // Verify the contract after deploying
+  //@ts-ignore
   await hre.run("verify:verify", {
     address: deployContract.address,
     constructorArguments: [],
@@ -24,7 +26,7 @@ async function main() {
 
   console.log("done");
 
-  function sleep(ms) {
+  function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
